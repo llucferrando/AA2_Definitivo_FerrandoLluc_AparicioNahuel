@@ -1,0 +1,5 @@
+﻿  Camera.cpp
+E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(6,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(17,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(18,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  MyFirstOpenGL.vcxproj -> E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\x64\Debug\MyFirstOpenGL.exe
