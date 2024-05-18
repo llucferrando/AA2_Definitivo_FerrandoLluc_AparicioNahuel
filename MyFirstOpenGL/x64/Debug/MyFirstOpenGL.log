@@ -1,5 +1,11 @@
-﻿  Camera.cpp
-E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(6,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(17,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(18,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  MyFirstOpenGL.vcxproj -> E:\2n CDI\INFORMATIQUE\AA2_FerrandoLluc_AparicioNahuel\x64\Debug\MyFirstOpenGL.exe
+﻿  Source.cpp
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(8,1): warning C4005: 'WINDOW_WIDTH': macro redefinition
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Model.h(11,1): message : see previous definition of 'WINDOW_WIDTH'
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(9,1): warning C4005: 'WINDOW_HEIGHT': macro redefinition
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Model.h(12,1): message : see previous definition of 'WINDOW_HEIGHT'
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(19,120): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(19,101): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(23,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(144,65): warning C4101: 'rock5': unreferenced local variable
+E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(177,54): warning C4101: 'troll4': unreferenced local variable
+  MyFirstOpenGL.vcxproj -> E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\x64\Debug\MyFirstOpenGL.exe

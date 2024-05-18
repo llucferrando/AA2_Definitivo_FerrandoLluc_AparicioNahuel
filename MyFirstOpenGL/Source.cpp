@@ -19,119 +19,6 @@ void Resize_Window(GLFWwindow* window, int iFrameBufferWidth, int iFrameBufferHe
 	glUniform2f(glGetUniformLocation(ProgramManager::getInstance().compiledPrograms[0], "windowSize"), iFrameBufferWidth, iFrameBufferHeight);
 }
 
-//Funcion que leera un .obj y devolvera un modelo para poder ser renderizado
-Model* LoadOBJModel(int IDProgram,const std::string& filePath, const char* texturefilePath, GLenum textureUnit, ModelType type) {
-
-	//Verifico archivo y si no puedo abrirlo cierro aplicativo
-	std::ifstream file(filePath);
-
-	if (!file.is_open()) {
-		std::cerr << "No se ha podido abrir el archivo: " << filePath << std::endl;
-		std::exit(EXIT_FAILURE);
-	}
-
-	//Variables lectura fichero
-	std::string line;
-	std::stringstream ss;
-	std::string prefix;
-	glm::vec3 tmpVec3;
-	glm::vec2 tmpVec2;
-
-	//Variables elemento modelo
-	std::vector<float> vertexs;
-	std::vector<float> vertexNormal;
-	std::vector<float> textureCoordinates;
-
-	//Variables temporales para algoritmos de sort
-	std::vector<float> tmpVertexs;
-	std::vector<float> tmpNormals;
-	std::vector<float> tmpTextureCoordinates;
-
-	//Recorremos archivo linea por linea
-	while (std::getline(file, line)) {
-
-		//Por cada linea reviso el prefijo del archivo que me indica que estoy analizando
-		ss.clear();
-		ss.str(line);
-		ss >> prefix;
-
-		//Estoy leyendo un vertice
-		if (prefix == "v") {
-
-			//Asumo que solo trabajo 3D así que almaceno XYZ de forma consecutiva
-			ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
-
-			//Almaceno en mi vector de vertices los valores
-			tmpVertexs.push_back(tmpVec3.x);
-			tmpVertexs.push_back(tmpVec3.y);
-			tmpVertexs.push_back(tmpVec3.z);
-		}
-
-		//Estoy leyendo una UV (texture coordinate)
-		else if (prefix == "vt") {
-
-			//Las UVs son siempre imagenes 2D asi que uso el tmpvec2 para almacenarlas
-			ss >> tmpVec2.x >> tmpVec2.y;
-
-			//Almaceno en mi vector temporal las UVs
-			tmpTextureCoordinates.push_back(tmpVec2.x);
-			tmpTextureCoordinates.push_back(tmpVec2.y);
-
-		}
-
-		//Estoy leyendo una normal
-		else if (prefix == "vn") {
-
-			//Asumo que solo trabajo 3D así que almaceno XYZ de forma consecutiva
-			ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
-
-			//Almaceno en mi vector temporal de normales las normales
-			tmpNormals.push_back(tmpVec3.x);
-			tmpNormals.push_back(tmpVec3.y);
-			tmpNormals.push_back(tmpVec3.z);
-
-		}
-
-		//Estoy leyendo una cara
-		else if (prefix == "f") {
-
-			int vertexData;
-			short counter = 0;
-
-			//Obtengo todos los valores hasta un espacio
-			while (ss >> vertexData) {
-
-				//En orden cada numero sigue el patron de vertice/uv/normal
-				switch (counter) {
-				case 0:
-					//Si es un vertice lo almaceno - 1 por el offset y almaceno dos seguidos al ser un vec3, salto 1 / y aumento el contador en 1
-					vertexs.push_back(tmpVertexs[(vertexData - 1) * 3]);
-					vertexs.push_back(tmpVertexs[((vertexData - 1) * 3) + 1]);
-					vertexs.push_back(tmpVertexs[((vertexData - 1) * 3) + 2]);
-					ss.ignore(1, '/');
-					counter++;
-					break;
-				case 1:
-					//Si es un uv lo almaceno - 1 por el offset y almaceno dos seguidos al ser un vec2, salto 1 / y aumento el contador en 1
-					textureCoordinates.push_back(tmpTextureCoordinates[(vertexData - 1) * 2]);
-					textureCoordinates.push_back(tmpTextureCoordinates[((vertexData - 1) * 2) + 1]);
-					ss.ignore(1, '/');
-					counter++;
-					break;
-				case 2:
-					//Si es una normal la almaceno - 1 por el offset y almaceno tres seguidos al ser un vec3, salto 1 / y reinicio
-					vertexNormal.push_back(tmpNormals[(vertexData - 1) * 3]);
-					vertexNormal.push_back(tmpNormals[((vertexData - 1) * 3) + 1]);
-					vertexNormal.push_back(tmpNormals[((vertexData - 1) * 3) + 2]);
-					counter = 0;
-					break;
-				}
-			}
-		}
-	}
-
-	return new Model(IDProgram,texturefilePath, vertexs, textureCoordinates, vertexNormal, textureUnit, type);
-}
 
 void main() {
 	
@@ -243,7 +130,7 @@ void GenerateCube()
 {
 	Model* cube1;
 
-	cube1 = LoadOBJModel(0, "Assets/Models/cube.obj", "Assets/Textures/cube.png", GL_TEXTURE2, ModelType::Cube);
+	cube1 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/cube.obj", "Assets/Textures/cube.png", GL_TEXTURE2, ModelType::Cube);
 	cube1->_position = glm::vec3{ 0.f,-.1f,5.5f };
 	cube1->_rotation = glm::vec3{ 90.f,0.f,0.f };
 	cube1->_scale = glm::vec3{ 5.f,5.f,.1f };
@@ -256,25 +143,25 @@ void GenerateRocks()
 {
 	Model* rock1; Model* rock2; Model* rock3; Model* rock4; Model* rock5;
 
-	rock1 = LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	rock1 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	rock1->_position = glm::vec3{0.7f,0.5f,4.5f};
 	rock1->_rotation = glm::vec3{ 90.f,0.f,35.f };
 	rock1->_scale = glm::vec3{ .6f,1.f,.7f };
 	models.push_back(rock1); 
 
-	rock2 = LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	rock2 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	rock2->_position = glm::vec3{-.7f,0.5f,4.5f};
 	rock2->_rotation = glm::vec3{90.f,0.f,-35.f };
 	rock2->_scale = glm::vec3{ .6f,1.f,.7f };
 	models.push_back(rock2); 
 
-	rock3 = LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	rock3 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	rock3->_position = glm::vec3{.7f,0.5f,3.f};
 	rock3->_rotation = glm::vec3{ 90.f,0.f,-35.f };
 	rock3->_scale = glm::vec3{ .6f,1.f,.7f };
 	models.push_back(rock3);
 
-	rock4 = LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	rock4 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	rock4->_position = glm::vec3{-.7f,0.5f,3.f};
 	rock4->_rotation = glm::vec3{ 90.f,0.f,35.f };
 	rock4->_scale = glm::vec3{ .6f,1.f,.7f };
@@ -289,21 +176,21 @@ void GenerateTroll()
 {
 	Model* troll1; Model* troll3; Model* troll2; Model* troll4;
 	//Blue Troll
-	troll1 = LoadOBJModel(1, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
+	troll1 = Engine::getInstance().LoadOBJModel(1, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
 	troll1->_position = glm::vec3{ -3.f,0.f,3.f };
 	troll1->_rotation = glm::vec3{ 0.f,90.f,0.f };
 	troll1->_scale = glm::vec3{ 1.f,1.f,1.f };
 	models.push_back(troll1);
 
 	//Green Troll
-	troll2 = LoadOBJModel(2, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
+	troll2 = Engine::getInstance().LoadOBJModel(2, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
 	troll2->_position = glm::vec3{ 3.f,0.f,3.f };
 	troll2->_rotation = glm::vec3{ 0.f,-90.f,0.f };
 	troll2->_scale = glm::vec3{ 1.f,1.f,1.f };
 	models.push_back(troll2);
 
 	//Normal Troll
-	troll3 = LoadOBJModel(0, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
+	troll3 = Engine::getInstance().LoadOBJModel(0, "Assets/Models/troll.obj", "Assets/Textures/troll.png", GL_TEXTURE0, ModelType::Troll);
 	troll3->_position = glm::vec3{ 0.f,0.f,6.f };
 	troll3->_rotation = glm::vec3{ 0.f,180.f,0.f };
 	troll3->_scale = glm::vec3{ 1.f,1.f,1.f };
@@ -318,13 +205,13 @@ void GenerateTroll()
 void GenerateClouds()
 {
 	Model* cloud1; Model* cloud2;
-	cloud1 = LoadOBJModel(3, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	cloud1 = Engine::getInstance().LoadOBJModel(3, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	cloud1->_position = glm::vec3{ 2.f,3.f,3.f };
 	cloud1->_rotation = glm::vec3{ 90.f,0.f,90.f };
 	cloud1->_scale = glm::vec3{ .6f,1.f,.7f };
 	models.push_back(cloud1);
 
-	cloud2 = LoadOBJModel(3, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
+	cloud2 = Engine::getInstance().LoadOBJModel(3, "Assets/Models/rock.obj", "Assets/Textures/rock.png", GL_TEXTURE1, ModelType::Rock);
 	cloud2->_position = glm::vec3{ -2.f,3.f,7.f };
 	cloud2->_rotation = glm::vec3{ 90.f,0.f,90.f };
 	cloud2->_scale = glm::vec3{ .6f,1.f,.7f };
