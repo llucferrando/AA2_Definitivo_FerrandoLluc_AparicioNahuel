@@ -1,11 +1,6 @@
 #pragma once
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm.hpp>
-#include <gtc/type_ptr.hpp>
-#include <gtc/matrix_transform.hpp>
 #include "Model.h"
-#include <iostream>
+
 
 class Engine
 {
@@ -20,8 +15,9 @@ public:
 	void Update(GLFWwindow* window);
 	void InputTransforms(GLFWwindow* window);
 
+
 	//Getters
-	//float getDeltaTime() const {};
+	float getDeltaTime() const { return deltaTime; }
 	bool getKey1Pressed() const { return key1Pressed; }
 	bool getKey2Pressed() const { return key2Pressed; }
 	bool getKey3Pressed() const { return key3Pressed; }

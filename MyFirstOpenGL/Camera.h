@@ -2,9 +2,6 @@
 #pragma once
 #include "GameObject.h"
 
-
-extern class Engine;
- 
 enum CameraState { Orbit = 0, FocusTroll1 = 1, FocusTroll2 = 2, FocusTroll3 = 3 };
 class Camera : public GameObject
 {

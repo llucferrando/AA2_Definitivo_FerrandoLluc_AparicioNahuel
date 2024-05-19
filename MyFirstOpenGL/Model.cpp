@@ -4,6 +4,7 @@
 Model::Model(int IDProgram, const char* filePath, const std::vector<float>& vertexs, const std::vector<float>& uvs, const std::vector<float>& normals, GLenum textureUnit, ModelType type)
     :_type(type), _programID(IDProgram), _filePath(filePath) {
     
+    //We create model's texture
     _texture = new Texture();
 
     //Almaceno la cantidad de vertices que habra

@@ -14,10 +14,10 @@ public:
     Model(int IDProgram, const char* filePath,const std::vector<float>& vertexs, const std::vector<float>& uvs, const std::vector<float>& normals, GLenum textureUnit, ModelType type);
     void Render(glm::mat4 view);
     
-    Texture* _texture;
 
 
 private:
+    Texture* _texture;
     GLuint VAO, VBO, uvVBO, normalsVBO;
     ModelType _type;
     unsigned int numVertexs;

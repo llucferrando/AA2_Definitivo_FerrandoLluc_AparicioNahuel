@@ -1,25 +1,6 @@
 ﻿  Camera.cpp
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.h(6,20): warning C4091: 'extern ': ignored on left of 'Engine' when no variable is declared
 E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(6,1): warning C4305: 'initializing': truncation from 'double' to 'float'
 E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(17,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.cpp(18,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Engine.cpp
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.h(6,20): warning C4091: 'extern ': ignored on left of 'Engine' when no variable is declared
-  Model.cpp
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.h(6,20): warning C4091: 'extern ': ignored on left of 'Engine' when no variable is declared
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Model.cpp(10,42): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-  ProgramManager.cpp
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.h(6,20): warning C4091: 'extern ': ignored on left of 'Engine' when no variable is declared
-  Source.cpp
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Camera.h(6,20): warning C4091: 'extern ': ignored on left of 'Engine' when no variable is declared
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(8,1): warning C4005: 'WINDOW_WIDTH': macro redefinition
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Model.h(8,1): message : see previous definition of 'WINDOW_WIDTH'
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(9,1): warning C4005: 'WINDOW_HEIGHT': macro redefinition
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Model.h(9,1): message : see previous definition of 'WINDOW_HEIGHT'
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(19,120): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(19,101): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(23,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(153,65): warning C4101: 'rock5': unreferenced local variable
-E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\MyFirstOpenGL\Source.cpp(186,54): warning C4101: 'troll4': unreferenced local variable
-  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   MyFirstOpenGL.vcxproj -> E:\2n CDI\DEFINITIVE\AA2_Definitivo_FerrandoLluc_AparicioNahuel\x64\Debug\MyFirstOpenGL.exe
