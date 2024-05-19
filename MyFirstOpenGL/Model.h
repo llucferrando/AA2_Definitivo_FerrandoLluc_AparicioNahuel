@@ -1,8 +1,5 @@
 #ifndef MODEL_H
 #define MODEL_H
-
-#include <vector>
-#include <GL/glew.h>
 #include "Texture.h"
 #include "ProgramManager.h"
 #include "Camera.h"

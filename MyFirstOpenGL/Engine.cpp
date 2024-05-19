@@ -113,4 +113,40 @@ Model* Engine::LoadOBJModel(int IDProgram, const std::string& filePath, const ch
 	return new Model(IDProgram, texturefilePath, vertexs, textureCoordinates, vertexNormal, textureUnit, type);
 }
 
+void Engine::Init()
+{
+	//Initializing time
+	lastFrameTime = static_cast<float>(glfwGetTime());
+}
+
+void Engine::Update(GLFWwindow* window)
+{
+	InputTransforms(window);
+	//Delta time update
+	float currentFrameTime = static_cast<float>(glfwGetTime());
+	deltaTime = currentFrameTime - lastFrameTime;
+	lastFrameTime = currentFrameTime;
+
+}
+
+void Engine::InputTransforms(GLFWwindow* window)
+{
+	key1Pressed = false;
+	key2Pressed = false;
+	key3Pressed = false;
+
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS && key1Pressed == false) {
+		key1Pressed = true;
+	}
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS && key2Pressed == false) {
+		key2Pressed = true;
+	}
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS && key3Pressed == false) {
+		key3Pressed = true;
+	}
+
+}
+
+
+
 

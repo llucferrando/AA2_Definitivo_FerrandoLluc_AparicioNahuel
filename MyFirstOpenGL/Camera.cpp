@@ -2,7 +2,7 @@
 
 
 Camera::Camera() : _fFov(45.0f), _aspectRatio(1.0), _fNear(0.1), _fFar(100.0),
-lookAtMid(false),lookAtTroll1(false), lookAtTroll2(false), lookAtTroll3(false)
+lookAtMid(false),lookAtTroll1(false), lookAtTroll2(false), lookAtTroll3(false),spawnedCamera(false)
 {
 	_position = { 0.f,2.f,0.f };
 	_rotation = { 0.f,0.f,0.f };
@@ -43,10 +43,14 @@ void Camera::Update()
 			lookAtTroll3 = true;
 			_localVectorUp = { 0.f,1.f,0.f };
 			_rotation = { 0.f,0.f,0.f };
-			_position = { 0.f,1.35f,3.f };
-			_fFov += 0.001f; // Adjust FOV to zoom out (increase for faster effect)
-			_position.z += .1f; // Move the camera forward
-	
+			if (!spawnedCamera) {
+				_position = { 0.f,1.35f,2.8f };
+				spawnedCamera = true;
+			}
+			else {
+				DollyEffect();
+			}
+			
 			return;
 	}
 }
@@ -75,7 +79,21 @@ void Camera::LookAt()
 	_viewMatrix = glm::lookAt(_position, targetPos, _localVectorUp);
 	MatrixView(_viewMatrix);
 }
+void Camera :: DollyEffect() {
+	//Multiply for dt to get constant velocity
+	//_position.z += .00016f * Engine::getInstance().getDeltaTime();
+	_position.z += .00016f;
+	if (_fFov <= 46.3 ) {
+		//_fFov += .000134f * Engine::getInstance().getDeltaTime();
+		_fFov += .000134f ;
+	}
+	else {
+		_fFov = 45.f;
+		myCameraState = Orbit;
+		spawnedCamera = false;
+	}
 
+}
 glm::mat4 Camera::MatrixView(glm::mat4 viewMat)
 {
 	return viewMat;

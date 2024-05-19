@@ -1,12 +1,10 @@
 
 #pragma once
 #include "GameObject.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm.hpp>
-#include <gtc/type_ptr.hpp>
-#include <gtc/matrix_transform.hpp>
 
+
+extern class Engine;
+ 
 enum CameraState { Orbit = 0, FocusTroll1 = 1, FocusTroll2 = 2, FocusTroll3 = 3 };
 class Camera : public GameObject
 {
@@ -29,9 +27,11 @@ public:
 	void setfNear(float fNear) { _fNear = fNear; }
 	void set_fFar(float fFar) { _fFar = fFar; }
 	void setOrbit(CameraState state) { myCameraState = state; }
+	
 
 	void Update();
 	void LookAt();
+	void DollyEffect();
 	glm::mat4 MatrixView(glm::mat4 viewMat);
 
 private:
@@ -47,6 +47,7 @@ private:
 	bool lookAtTroll1;
 	bool lookAtTroll2;
 	bool lookAtTroll3;
+	bool spawnedCamera;
 	glm::mat4 _viewMatrix;
 	CameraState myCameraState;
 	
